@@ -1,6 +1,7 @@
 from pathlib import Path
 import sys
 import argparse
+import random
 import pygame
 
 TILE_SIZE = 48
@@ -164,19 +165,13 @@ class Enemy:
         self.tick = 0
         rows = len(grid)
         cols = len(grid[0])
-        nx = self.x
-        ny = self.y
-        if self.pattern == "horizontal":
-            nx = self.x + self.step_dir
-        elif self.pattern == "vertical":
-            ny = self.y + self.step_dir
-        else:
-            nx = self.x + self.step_dir
+        moves = [(0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)]
+        dx, dy = random.choice(moves)
+        nx = self.x + dx
+        ny = self.y + dy
         if not (0 <= nx < cols and 0 <= ny < rows):
-            self.step_dir *= -1
             return
-        if grid[ny][nx] in {"1", "X"}:
-            self.step_dir *= -1
+        if grid[ny][nx] == "1":
             return
         self.x = nx
         self.y = ny
@@ -214,7 +209,8 @@ def draw_grid(screen, grid, player_pos, enemies,
     )
 
 
-def render_text(screen, font, moves, remaining, msg=None):
+def render_text(screen, font, moves, remaining, msg=None,
+                hint=None):
     moves_surf = font.render(
         f"Moves: {moves}", True, (255, 255, 255)
     )
@@ -230,34 +226,47 @@ def render_text(screen, font, moves, remaining, msg=None):
         rx = (w - s.get_width()) // 2
         ry = (h - s.get_height()) // 2
         screen.blit(s, (rx, ry))
+    if hint:
+        h_surf = font.render(hint, True, (200, 200, 200))
+        screen.blit(h_surf, (8, h - 28))
 
 
 def run_game(map_path, assets_dir):
-    grid = load_map(map_path)
-    cols = len(grid[0])
-    rows = len(grid)
+    base_grid = load_map(map_path)
+    cols = len(base_grid[0])
+    rows = len(base_grid)
     width = cols * TILE_SIZE
     height = rows * TILE_SIZE
+
     pygame.init()
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("2D Collect Game")
     clock = pygame.time.Clock()
+
     assets = load_assets(assets_dir, TILE_SIZE)
-    player_x, player_y = find_player(grid)
-    grid[player_y][player_x] = "0"
-    enemy_positions = find_enemies(grid)
-    for ex, ey in enemy_positions:
-        grid[ey][ex] = "0"
-    enemies = [Enemy(x, y) for x, y in enemy_positions]
-    remaining = sum(row.count("C") for row in grid)
+    font = pygame.font.SysFont(None, 24)
+
+    def init_level():
+        grid_local = load_map(map_path)
+        px, py = find_player(grid_local)
+        grid_local[py][px] = "0"
+        enemy_pos = find_enemies(grid_local)
+        for ex, ey in enemy_pos:
+            grid_local[ey][ex] = "0"
+        enemies_local = [Enemy(x, y) for x, y in enemy_pos]
+        remaining_local = sum(row.count("C") for row in grid_local)
+        return grid_local, px, py, enemies_local, remaining_local
+
+    grid, player_x, player_y, enemies, remaining = init_level()
+
     moves = 0
     anim_indices = {"player": 0, "enemy": 0}
     anim_timer = 0
     anim_delay = 8
-    font = pygame.font.SysFont(None, 24)
     running = True
     game_over = False
     win = False
+
     while running:
         for ev in pygame.event.get():
             if ev.type == pygame.QUIT:
@@ -268,6 +277,15 @@ def run_game(map_path, assets_dir):
                     running = False
                     break
                 if game_over or win:
+                    if ev.key == pygame.K_r:
+                        grid, player_x, player_y, enemies, remaining = (
+                            init_level()
+                        )
+                        moves = 0
+                        anim_indices = {"player": 0, "enemy": 0}
+                        anim_timer = 0
+                        game_over = False
+                        win = False
                     continue
                 dx = 0
                 dy = 0
@@ -328,19 +346,26 @@ def run_game(map_path, assets_dir):
         )
         if game_over:
             render_text(
-                screen, font, moves, remaining, msg="GAME OVER"
+                screen,
+                font,
+                moves,
+                remaining,
+                msg="GAME OVER",
+                hint="Press R to restart or ESC to quit",
             )
         elif win:
             render_text(
-                screen, font, moves, remaining, msg="YOU WIN"
+                screen,
+                font,
+                moves,
+                remaining,
+                msg="YOU WIN",
+                hint="Press R to restart or ESC to quit",
             )
         else:
             render_text(screen, font, moves, remaining)
         pygame.display.flip()
         clock.tick(FPS)
-        if game_over or win:
-            pygame.time.delay(1200)
-            running = False
     pygame.quit()
     return 0
 
