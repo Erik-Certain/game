@@ -4,6 +4,13 @@
 
 <img width="1152" height="693" alt="image" src="https://github.com/user-attachments/assets/56781afe-b91b-4f5d-bc55-24d25243c167" />
 
+# Описание игры
+Цель игрока — собрать все коллекционные предметы на карте и дойти до выхода, не столкнувшись с патрулями.
+
+Карта считывается из файла map.txt.
+Управление осуществляется клавишами W A S D.
+На экране отображается количество ходов и оставшихся предметов.
+
 # Игровые правила:
 
 Игрок двигается клавишами:
@@ -36,6 +43,7 @@ D — вправо
 |    E   | <img width="100" height="100" alt="exit" src="https://github.com/user-attachments/assets/a114dabb-55c5-480f-9a03-431d37e0669c" /> | Выход |
 |    P   | <img width="100" height="100" alt="player" src="https://github.com/user-attachments/assets/9f8cf2f7-40e3-402c-ac94-ff35e872e970" /> | Игрок (Старт) |
 |    X   | <img width="100" height="100" alt="enemy" src="https://github.com/user-attachments/assets/7a14c6fc-ee11-4151-9779-15faf139de0b" /> | Патруль (враг) |
+
 
 
 
