@@ -42,10 +42,10 @@ D — вправо
 1. Установить Python (версия 3.10+)
 2. Скачать проект
    Через git:
-   '''
+   ```
    git clone https://github.com/Erik-Certain/game
    cd game
-   '''
+   ```
    Или скачать ZIP с GitHub и распаковать.
 4. Установить зависимости
    pip install -r requirements.txt
@@ -53,6 +53,7 @@ D — вправо
    Благодаря нему игра запускается на любом компьютере одинаково.
 5. Запуск игры
    python main.py
+
 
 
 
