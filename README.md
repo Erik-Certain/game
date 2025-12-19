@@ -38,7 +38,19 @@ D — вправо
 |    P   | <img width="100" height="100" alt="player" src="https://github.com/user-attachments/assets/9f8cf2f7-40e3-402c-ac94-ff35e872e970" /> | Игрок (Старт) |
 |    X   | <img width="100" height="100" alt="enemy" src="https://github.com/user-attachments/assets/7a14c6fc-ee11-4151-9779-15faf139de0b" /> | Патруль (враг) |
 
-
+# Как сыграть на своём устройстве
+1. Установить Python (версия 3.10+)
+2. Скачать проект
+   Через git:
+   git clone https://github.com/Erik-Certain/game
+   cd game
+   Или скачать ZIP с GitHub и распаковать.
+3. Установить зависимости
+   pip install -r requirements.txt
+   Файл requirements.txt содержит список библиотек, нужных для запуска игры.
+   Благодаря нему игра запускается на любом компьютере одинаково.
+4. Запуск игры
+   python main.py
 
 
 
