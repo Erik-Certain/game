@@ -29,9 +29,10 @@ D — вправо
 
 
 | Символ | Спрайт | Значение |
-|------------|------------|
-| 1 | <img width="100" height="100" alt="wall" src="https://github.com/user-attachments/assets/9ddd1359-98ea-41ea-848c-71413c71cc08" /> | Пустая клетка |
+|--------|--------|----------|
+|    1   | <img width="100" height="100" alt="wall" src="https://github.com/user-attachments/assets/9ddd1359-98ea-41ea-848c-71413c71cc08" /> | Пустая клетка |
 |   | Ячейка B2  |
+
 
 
 
