@@ -34,7 +34,8 @@ D — вправо
 |    1   | <img width="100" height="100" alt="wall" src="https://github.com/user-attachments/assets/9ddd1359-98ea-41ea-848c-71413c71cc08" /> | Стена |
 |    C   | <img width="100" height="100" alt="collectible" src="https://github.com/user-attachments/assets/4d8c26d4-45dd-4807-a50b-63a23535c6f0" /> | Коллекционный предмет |
 |    E   | <img width="100" height="100" alt="exit" src="https://github.com/user-attachments/assets/a114dabb-55c5-480f-9a03-431d37e0669c" /> | Выход |
-|   | Ячейка B2  |
+|    P   | <img width="100" height="100" alt="player" src="https://github.com/user-attachments/assets/9f8cf2f7-40e3-402c-ac94-ff35e872e970" /> | Игрок (Старт) |
+|    X   | <img width="100" height="100" alt="enemy" src="https://github.com/user-attachments/assets/7a14c6fc-ee11-4151-9779-15faf139de0b" /> | Патруль (враг) |
 
 
 
