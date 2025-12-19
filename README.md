@@ -30,8 +30,10 @@ D — вправо
 
 | Символ | Спрайт | Значение |
 |:------:|:------:|:--------:|
-|    1   | <img width="100" height="100" alt="wall" src="https://github.com/user-attachments/assets/9ddd1359-98ea-41ea-848c-71413c71cc08" /> | Пустая клетка |
+|    0   | <img width="512" height="512" alt="empty" src="https://github.com/user-attachments/assets/3a40eee3-33bf-4e95-8fc7-74d5c4e8223d" />| Пустая клетка |
+|    1   | <img width="100" height="100" alt="wall" src="https://github.com/user-attachments/assets/9ddd1359-98ea-41ea-848c-71413c71cc08" /> | Стена |
 |   | Ячейка B2  |
+
 
 
 
