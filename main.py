@@ -2,7 +2,7 @@ from pathlib import Path
 import sys
 import argparse
 import random
-import pygame
+import pygame  # type: ignore
 
 TILE_SIZE = 48
 FPS = 60
